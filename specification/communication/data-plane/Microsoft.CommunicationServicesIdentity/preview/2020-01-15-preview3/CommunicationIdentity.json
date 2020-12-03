@@ -1,0 +1,337 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "CommunicationIdentityClient",
+    "description": "Azure Communication Identity Service",
+    "version": "2020-01-15-preview3"
+  },
+  "paths": {
+    "/users": {
+      "parameters": [
+        {
+          "$ref": "#/parameters/ApiVersionParameter"
+        }
+      ],
+      "get": {
+        "tags": [
+          "Manage communication users"
+        ],
+        "summary": "List all communication users.",
+        "operationId": "CommunicationIdentity_ListUsers",
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "The list of users.",
+            "schema": {
+              "$ref": "#/definitions/UserListResult"
+            }
+          }
+        },
+        "x-ms-pageable": {
+          "nextLinkName": "nextLink"
+        },
+        "x-ms-examples": {
+          "List users": {
+            "$ref": "./examples/GetUsers.json"
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "Manage communication users"
+        ],
+        "summary": "Create a new user.",
+        "operationId": "CommunicationIdentity_CreateUser",
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "The created communication user.",
+            "schema": {
+              "$ref": "#/definitions/CommunicationUser"
+            }
+          }
+        },
+        "x-ms-examples": {
+          "Create a user": {
+            "$ref": "./examples/CreateUser.json"
+          }
+        }
+      }
+    },
+    "/users/{id}": {
+      "parameters": [
+        {
+          "$ref": "#/parameters/ApiVersionParameter"
+        }
+      ],
+      "get": {
+        "tags": [
+          "Manage communication users"
+        ],
+        "summary": "Get the user.",
+        "operationId": "CommunicationIdentity_GetUser",
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "The communication user.",
+            "schema": {
+              "$ref": "#/definitions/CommunicationUser"
+            }
+          }
+        },
+        "x-ms-examples": {
+          "Get a user": {
+            "$ref": "./examples/GetUser.json"
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "Manage communication users"
+        ],
+        "summary": "Delete the user, revoke all tokens for the user and delete all associated data.",
+        "operationId": "CommunicationIdentity_DeleteUser",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "description": "Id of the user to be deleted.",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "Success"
+          }
+        },
+        "x-ms-examples": {
+          "Delete a user": {
+            "$ref": "./examples/DeleteUser.json"
+          }
+        }
+      },
+      "patch": {
+        "tags": [
+          "Manage communication users"
+        ],
+        "summary": "Update the user.",
+        "operationId": "CommunicationIdentity_UpdateUser",
+        "consumes": [
+          "application/merge-patch+json"
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "description": "Id of the user.",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "in": "body",
+            "name": "body",
+            "description": "The properties of the user to be updated.",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/CommunicationUserUpdateRequest"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "The updated communication user.",
+            "schema": {
+              "$ref": "#/definitions/CommunicationUser"
+            }
+          }
+        },
+        "x-ms-examples": {
+          "Update User": {
+            "$ref": "./examples/UpdateUser.json"
+          }
+        }
+      }
+    },
+    "/users/{id}/~issueToken": {
+      "parameters": [
+        {
+          "$ref": "#/parameters/ApiVersionParameter"
+        }
+      ],
+      "post": {
+        "tags": [
+          "Issue tokens for a user"
+        ],
+        "summary": "Issue a new token for a user.",
+        "operationId": "CommunicationIdentity_IssueUserToken",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "description": "Id of the user to issue a token for.",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "in": "body",
+            "name": "body",
+            "description": "Requesting scopes for the new token.",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/CommunicationUserTokenRequest"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "schema": {
+              "$ref": "#/definitions/CommunicationUserToken"
+            }
+          }
+        },
+        "x-ms-examples": {
+          "Issue a user token": {
+            "$ref": "./examples/IssueUserToken.json"
+          }
+        }
+      }
+    }
+  },
+  "definitions": {
+    "CommunicationUser": {
+      "description": "A communication user.",
+      "required": [
+        "id",
+        "tokensValidFrom"
+      ],
+      "type": "object",
+      "properties": {
+        "id": {
+          "description": "Id of the user.",
+          "type": "string"
+        },
+        "tokensValidFrom": {
+          "description": "All tokens issued prior to this time are invalid.",
+          "format": "date-time",
+          "type": "string"
+        }
+      }
+    },
+    "UserListResult": {
+      "description": "Collection of communication users.",
+      "required": [
+        "value"
+      ],
+      "type": "object",
+      "properties": {
+        "value": {
+          "description": "A response message containing a list of communication users along with a link to the next page of communication users.",
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/CommunicationUser"
+          }
+        },
+        "nextLink": {
+          "description": "The URL to get the next set of storage accounts.",
+          "type": "string",
+          "readOnly": true
+        }
+      }
+    },
+    "CommunicationUserUpdateRequest": {
+      "type": "object",
+      "properties": {
+        "tokensValidFrom": {
+          "description": "All tokens issued prior to this time are invalid.",
+          "format": "date-time",
+          "type": "string"
+        }
+      }
+    },
+    "CommunicationUserTokenRequest": {
+      "required": [
+        "scopes"
+      ],
+      "type": "object",
+      "properties": {
+        "scopes": {
+          "description": "List of scopes attached to the token.",
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "CommunicationUserToken": {
+      "required": [
+        "expiresOn",
+        "id",
+        "token"
+      ],
+      "type": "object",
+      "properties": {
+        "id": {
+          "description": "Id of the user owning the token.",
+          "type": "string"
+        },
+        "token": {
+          "description": "The token issued for the user.",
+          "type": "string"
+        },
+        "expiresOn": {
+          "description": "The expiry time of the token.",
+          "format": "date-time",
+          "type": "string"
+        }
+      }
+    }
+  },
+  "parameters": {
+    "ApiVersionParameter": {
+      "in": "query",
+      "name": "api-version",
+      "required": true,
+      "type": "string"
+    }
+  },
+  "securityDefinitions": {
+    "azure_auth": {
+      "type": "oauth2",
+      "flow": "implicit",
+      "authorizationUrl": "https://login.microsoftonline.com/common/oauth2/authorize",
+      "scopes": {
+        "user_impersonation": "impersonate your user account"
+      }
+    }
+  },
+  "x-ms-parameterized-host": {
+    "hostTemplate": "{endpoint}",
+    "useSchemePrefix": false,
+    "parameters": [
+      {
+        "name": "endpoint",
+        "description": "The communication resource, for example https://my-resource.communication.azure.com",
+        "required": true,
+        "type": "string",
+        "in": "path",
+        "x-ms-skip-url-encoding": true,
+        "x-ms-parameter-location": "client"
+      }
+    ]
+  }
+}

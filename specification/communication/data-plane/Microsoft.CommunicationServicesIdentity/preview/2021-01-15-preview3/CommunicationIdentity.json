@@ -27,6 +27,12 @@
             "schema": {
               "$ref": "#/definitions/UserListResult"
             }
+          },
+          "default": {
+            "description": "Error response.",
+            "schema": {
+              "$ref": "../../../Microsoft.CommunicationServicesCommon/preview/2020-11-19-preview1/common.json#/definitions/CommunicationError"
+            }
           }
         },
         "x-ms-pageable": {
@@ -52,6 +58,12 @@
             "description": "The created communication user.",
             "schema": {
               "$ref": "#/definitions/CommunicationUser"
+            }
+          },
+          "default": {
+            "description": "Error response.",
+            "schema": {
+              "$ref": "../../../Microsoft.CommunicationServicesCommon/preview/2020-11-19-preview1/common.json#/definitions/CommunicationError"
             }
           }
         },
@@ -83,6 +95,12 @@
             "schema": {
               "$ref": "#/definitions/CommunicationUser"
             }
+          },
+          "default": {
+            "description": "Error response.",
+            "schema": {
+              "$ref": "../../../Microsoft.CommunicationServicesCommon/preview/2020-11-19-preview1/common.json#/definitions/CommunicationError"
+            }
           }
         },
         "x-ms-examples": {
@@ -109,6 +127,12 @@
         "responses": {
           "204": {
             "description": "Success"
+          },
+          "default": {
+            "description": "Error response.",
+            "schema": {
+              "$ref": "../../../Microsoft.CommunicationServicesCommon/preview/2020-11-19-preview1/common.json#/definitions/CommunicationError"
+            }
           }
         },
         "x-ms-examples": {
@@ -126,6 +150,9 @@
         "consumes": [
           "application/merge-patch+json"
         ],
+        "produces": [
+          "application/json"
+        ],
         "parameters": [
           {
             "in": "path",
@@ -136,11 +163,11 @@
           },
           {
             "in": "body",
-            "name": "body",
+            "name": "parameters",
             "description": "The properties of the user to be updated.",
             "required": true,
             "schema": {
-              "$ref": "#/definitions/CommunicationUserUpdateRequest"
+              "$ref": "#/definitions/CommunicationUserUpdateParameters"
             }
           }
         ],
@@ -149,6 +176,12 @@
             "description": "The updated communication user.",
             "schema": {
               "$ref": "#/definitions/CommunicationUser"
+            }
+          },
+          "default": {
+            "description": "Error response.",
+            "schema": {
+              "$ref": "../../../Microsoft.CommunicationServicesCommon/preview/2020-11-19-preview1/common.json#/definitions/CommunicationError"
             }
           }
         },
@@ -187,11 +220,11 @@
           },
           {
             "in": "body",
-            "name": "body",
+            "name": "parameters",
             "description": "Requesting scopes for the new token.",
             "required": true,
             "schema": {
-              "$ref": "#/definitions/CommunicationUserTokenRequest"
+              "$ref": "#/definitions/CommunicationUserTokenParameters"
             }
           }
         ],
@@ -200,6 +233,12 @@
             "description": "Success",
             "schema": {
               "$ref": "#/definitions/CommunicationUserToken"
+            }
+          },
+          "default": {
+            "description": "Error response.",
+            "schema": {
+              "$ref": "../../../Microsoft.CommunicationServicesCommon/preview/2020-11-19-preview1/common.json#/definitions/CommunicationError"
             }
           }
         },
@@ -252,7 +291,7 @@
         }
       }
     },
-    "CommunicationUserUpdateRequest": {
+    "CommunicationUserUpdateParameters": {
       "type": "object",
       "properties": {
         "tokensValidFrom": {
@@ -262,7 +301,7 @@
         }
       }
     },
-    "CommunicationUserTokenRequest": {
+    "CommunicationUserTokenParameters": {
       "required": [
         "scopes"
       ],

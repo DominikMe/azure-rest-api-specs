@@ -270,6 +270,19 @@
         }
       }
     },
+    "CommunicationUserTokenScope": {
+      "description": "List of scopes for a user token.",
+      "type": "string",
+      "enum": [
+        "chat",
+        "voip",
+        "pstn"
+      ],
+      "x-ms-enum": {
+        "name": "CommunicationUserTokenScope",
+        "modelAsString": true
+      }
+    },
     "UserListResult": {
       "description": "Collection of communication users.",
       "required": [
@@ -311,7 +324,7 @@
           "description": "List of scopes attached to the token.",
           "type": "array",
           "items": {
-            "type": "string"
+            "$ref": "#/definitions/CommunicationUserTokenScope"
           }
         }
       }

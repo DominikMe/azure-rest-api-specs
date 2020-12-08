@@ -25,7 +25,7 @@
           "200": {
             "description": "The list of users.",
             "schema": {
-              "$ref": "#/definitions/UserListResult"
+              "$ref": "#/definitions/CommunicationUserListResult"
             }
           },
           "default": {
@@ -292,7 +292,7 @@
         "modelAsString": true
       }
     },
-    "UserListResult": {
+    "CommunicationUserListResult": {
       "description": "Collection of communication users.",
       "required": [
         "value"

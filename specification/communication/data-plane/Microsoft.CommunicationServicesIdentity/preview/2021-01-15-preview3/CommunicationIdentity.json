@@ -3,7 +3,7 @@
   "info": {
     "title": "CommunicationIdentityClient",
     "description": "Azure Communication Identity Service",
-    "version": "2020-01-15-preview3"
+    "version": "2021-01-15-preview3"
   },
   "paths": {
     "/users": {
@@ -74,7 +74,7 @@
         }
       }
     },
-    "/users/{id}": {
+    "/users/{userId}": {
       "parameters": [
         {
           "$ref": "#/parameters/ApiVersionParameter"
@@ -88,6 +88,15 @@
         "operationId": "CommunicationIdentity_GetUser",
         "produces": [
           "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "userId",
+            "description": "Id of the user.",
+            "required": true,
+            "type": "string"
+          }
         ],
         "responses": {
           "200": {
@@ -118,7 +127,7 @@
         "parameters": [
           {
             "in": "path",
-            "name": "id",
+            "name": "userId",
             "description": "Id of the user to be deleted.",
             "required": true,
             "type": "string"
@@ -156,7 +165,7 @@
         "parameters": [
           {
             "in": "path",
-            "name": "id",
+            "name": "userId",
             "description": "Id of the user.",
             "required": true,
             "type": "string"
@@ -192,7 +201,7 @@
         }
       }
     },
-    "/users/{id}/~issueToken": {
+    "/users/{userId}/~issueToken": {
       "parameters": [
         {
           "$ref": "#/parameters/ApiVersionParameter"
@@ -213,7 +222,7 @@
         "parameters": [
           {
             "in": "path",
-            "name": "id",
+            "name": "userId",
             "description": "Id of the user to issue a token for.",
             "required": true,
             "type": "string"

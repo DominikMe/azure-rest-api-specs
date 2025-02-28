@@ -1706,13 +1706,13 @@
       }
     },
     "CommunicationIdentifierModel": {
-      "$ref": "../../../Common/stable/2023-11-15/common.json#/definitions/CommunicationIdentifierModel"
+      "$ref": "../../../Common/preview/2025-03-15-preview/common.json#/definitions/CommunicationIdentifierModel"
     },
     "PhoneNumberIdentifierModel": {
-      "$ref": "../../../Common/stable/2023-11-15/common.json#/definitions/PhoneNumberIdentifierModel"
+      "$ref": "../../../Common/preview/2025-03-15-preview/common.json#/definitions/PhoneNumberIdentifierModel"
     },
     "CommunicationUserIdentifierModel": {
-      "$ref": "../../../Common/stable/2023-11-15/common.json#/definitions/CommunicationUserIdentifierModel"
+      "$ref": "../../../Common/preview/2025-03-15-preview/common.json#/definitions/CommunicationUserIdentifierModel"
     },
     "CallIntelligenceOptions": {
       "description": "AI options for the call.",
@@ -1865,13 +1865,13 @@
       }
     },
     "MicrosoftTeamsUserIdentifierModel": {
-      "$ref": "../../../Common/stable/2023-11-15/common.json#/definitions/MicrosoftTeamsUserIdentifierModel"
+      "$ref": "../../../Common/preview/2025-03-15-preview/common.json#/definitions/MicrosoftTeamsUserIdentifierModel"
     },
     "MicrosoftTeamsAppIdentifierModel": {
-      "$ref": "../../../Common/stable/2023-11-15/common.json#/definitions/MicrosoftTeamsAppIdentifierModel"
+      "$ref": "../../../Common/preview/2025-03-15-preview/common.json#/definitions/MicrosoftTeamsAppIdentifierModel"
     },
     "CommunicationErrorResponse": {
-      "$ref": "../../../Common/stable/2023-11-15/common.json#/definitions/CommunicationErrorResponse"
+      "$ref": "../../../Common/preview/2025-03-15-preview/common.json#/definitions/CommunicationErrorResponse"
     },
     "CallConnectionStateModel": {
       "description": "The state of the call connection.",
